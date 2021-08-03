@@ -21,12 +21,21 @@ function MovieDetails(props) {
         },
             body: JSON.stringify( {stars : rate + 1} )
         })
-        .then(resp => resp.json()) //converting response to json
-        .then(resp => console.log(resp))
+        .then( () => getDetails())
         .catch(error => console.log(error))
     }
 
-    
+    const getDetails = () => {
+        fetch(`http://ed2e0bbe7728.ngrok.io/api/movies/${movie.id}/`, {
+      method: 'GET',
+      headers: {
+        'Content-Type':'application/json',
+        'Authorization': 'Token 29efed2719a4a9f3f13f3ff253c744066063eb4e'
+      }
+    }).then(resp => resp.json()) //converting response to json
+      .then(resp => props.updateMovie(resp))
+      .catch(error => console.log(error))
+  }
 
     return (
         <React.Fragment>
