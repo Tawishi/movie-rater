@@ -9,7 +9,7 @@ function App() {
   const [selectedMovie, setSelectedMovie] = useState(null);
 
   useEffect(()=>{
-    fetch("https://306c6ced25f9.ngrok.io/api/movies/", {
+    fetch("http://ed2e0bbe7728.ngrok.io/api/movies/", {
       method: 'GET',
       headers: {
         'Content-Type':'application/json',

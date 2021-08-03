@@ -24,5 +24,18 @@
 
 .orange {
   color:orange;
-  
+}
+
+.yellow {
+  color:yellow;
+}
+
+.rate-container {
+  margin-top: 20px;
+  border-top : 2px solid grey;
+}
+
+.rate-container .fa-star {
+  font-size: 1.8rem;
+  cursor: pointer;
 }
