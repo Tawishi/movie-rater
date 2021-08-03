@@ -1,0 +1,28 @@
+.App {
+  padding: 20px;
+  min-height: 100vh;
+  background-color: #282c34;
+  color: white;
+}
+
+.App-header {
+  text-align: center;
+  /* display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; */
+  font-size: calc(10px + 2vmin);
+  
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr; 
+  /* fr = free space ; relative space taken*/
+  grid-gap: 20px;
+}
+
+.orange {
+  color:orange;
+  
+}
