@@ -23,4 +23,14 @@ export class API {
     }).then(resp => resp.json())
   }
 
+  static deleteMovie(movie_id) {
+    return fetch(`https://471c462111d2.ngrok.io/api/movies/${movie_id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type':'application/json',
+        'Authorization': `Token ${TOKEN}`
+      }
+    })
+  }
+
 }
