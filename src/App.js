@@ -2,14 +2,17 @@ import React, {useState, useEffect} from 'react';
 import './App.css';
 import MovieList from './components/movie-list'
 import MovieDetails from './components/movie-details'
+import MovieForm from './components/movie-form'
 
 function App() {
 
   const [movies, setMovie] = useState([]);
   const [selectedMovie, setSelectedMovie] = useState(null);
+  const [editMovie, setEditedMovie] = useState(null);
+
 
   useEffect(()=>{
-    fetch("http://ed2e0bbe7728.ngrok.io/api/movies/", {
+    fetch("https://471c462111d2.ngrok.io/api/movies/", {
       method: 'GET',
       headers: {
         'Content-Type':'application/json',
@@ -20,22 +23,27 @@ function App() {
       .catch(error => console.log(error))
   }, [])
 
-  const movieClicked = movie => {
-    setSelectedMovie(movie)
-  }
-
   const loadMovie = movie => {
     setSelectedMovie(movie)
+    setEditedMovie(null)
+
   }
 
+  const editClicked = movie => {
+    setEditedMovie(movie)
+    setSelectedMovie(null)
+  }
+  
   return (
     <div className="App">
       <header className="App-header">
         <h1>Movie Rater</h1>
       </header>
       <div className="layout">
-        <MovieList movies={movies} movieClicked={movieClicked}/>         
-          <MovieDetails movie={selectedMovie} updateMovie={loadMovie}/>
+        <MovieList movies={movies} movieClicked={loadMovie} editClicked={editClicked}/>         
+        <MovieDetails movie={selectedMovie} updateMovie={loadMovie}/>
+        {editMovie ? <MovieForm movie={editMovie}/> : null}
+        
         </div>
     </div>
   );

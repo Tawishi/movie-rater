@@ -13,7 +13,7 @@ function MovieDetails(props) {
 
     const rateClicked = rate => evt => {
         // send message to API
-        fetch(`http://ed2e0bbe7728.ngrok.io/api/movies/${movie.id}/rate_movie/`, {
+        fetch(`https://471c462111d2.ngrok.io/api/movies/${movie.id}/rate_movie/`, {
         method: 'POST',
         headers: {
             'Content-Type':'application/json',
@@ -26,7 +26,7 @@ function MovieDetails(props) {
     }
 
     const getDetails = () => {
-        fetch(`http://ed2e0bbe7728.ngrok.io/api/movies/${movie.id}/`, {
+        fetch(`https://471c462111d2.ngrok.io/api/movies/${movie.id}/`, {
       method: 'GET',
       headers: {
         'Content-Type':'application/json',
