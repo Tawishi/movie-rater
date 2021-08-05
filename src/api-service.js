@@ -11,4 +11,16 @@ export class API {
       body: JSON.stringify (body)
     }).then(resp => resp.json())
   }
+
+  static createMovie(body) {
+    return fetch(`https://471c462111d2.ngrok.io/api/movies/`, {
+      method: 'POST',
+      headers: {
+        'Content-Type':'application/json',
+        'Authorization': `Token ${TOKEN}`
+      },
+      body: JSON.stringify (body)
+    }).then(resp => resp.json())
+  }
+
 }
