@@ -1,9 +1,12 @@
 import { useState, useEffect} from 'react'
 import {API} from '../api-service'
+import { useCookies } from 'react-cookie';
+
 function MovieForm(props) {
 
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
+    const [token] = useCookies(['mr-token'])
     
     useEffect( () => {
         setTitle(props.movie.title)
@@ -11,13 +14,13 @@ function MovieForm(props) {
     }, [props.movie])
 
     const updateClicked  = () => {        
-        API.updateMovie(props.movie.id, {title, description})
+        API.updateMovie(props.movie.id, {title, description}, token['mr-token'])
         .then(resp => props.updateMovie(resp))
         .catch( error => console.log(error))
     }
 
     const createClicked  = () => {        
-        API.createMovie({title, description})
+        API.createMovie({title, description}, token['mr-token'])
         .then(resp => props.movieCreate(resp))
         .catch( error => console.log(error))
     }

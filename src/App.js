@@ -3,12 +3,14 @@ import './App.css';
 import MovieList from './components/movie-list'
 import MovieDetails from './components/movie-details'
 import MovieForm from './components/movie-form'
+import { useCookies } from 'react-cookie';
 
 function App() {
 
   const [movies, setMovies] = useState([]);
   const [selectedMovie, setSelectedMovie] = useState(null);
   const [editMovie, setEditedMovie] = useState(null);
+  const [token] = useCookies(['mr-token'])
 
 
   useEffect(()=>{
@@ -16,12 +18,17 @@ function App() {
       method: 'GET',
       headers: {
         'Content-Type':'application/json',
-        'Authorization': 'Token 29efed2719a4a9f3f13f3ff253c744066063eb4e'
+        'Authorization': `Token ${token['mr-token']}`
       }
     }).then(resp => resp.json()) //converting response to json
       .then(resp => setMovies(resp))
       .catch(error => console.log(error))
   }, [])
+
+  useEffect( () => {
+    console.log(token)
+    if (!token['mr-token']) window.location.href = '/'
+}, [token])
 
   const loadMovie = movie => {
     setSelectedMovie(movie)
