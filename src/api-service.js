@@ -1,6 +1,17 @@
 const TOKEN = "29efed2719a4a9f3f13f3ff253c744066063eb4e"
 
 export class API {
+
+    static loginUser(body) {
+        return fetch(`https://471c462111d2.ngrok.io/auth/`, {
+          method: 'POST',
+          headers: {
+            'Content-Type':'application/json'
+          },
+          body: JSON.stringify(body)
+        }).then(resp => resp.json())
+    }
+
     static updateMovie(movie_id, body) {
     return fetch(`https://471c462111d2.ngrok.io/api/movies/${movie_id}/`, {
       method: 'PUT',
