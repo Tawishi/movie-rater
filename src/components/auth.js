@@ -6,11 +6,12 @@ function Auth() {
 
     const [ username, setUsername ] = useState('')
     const [ password, setPassword ] = useState('')
+    const [ isLoginView, setIsLoginView] = useState(true)
 
     const [token, setToken] = useCookies(['mr-token'])
 
     useEffect( () => {
-        // console.log(token)
+        console.log(token)
         if (token['mr-token']) window.location.href = '/movies'
     }, [token])
 
@@ -20,8 +21,18 @@ function Auth() {
         .catch( error => console.log(error))
     }
 
+    const registerClicked = () => {
+        API.registerUser({username, password})
+        // .then( resp => console.log(resp))
+        // auto login after register
+        .then( () => loginClicked())
+        .catch( error => console.log(error))
+    }
+
     return (
         <div>
+            {isLoginView ? <h1>Login</h1> : <h1>Register</h1>}
+            
             <label htmlFor="username">Username</label><br/>
             <input id ="username" type="text" placeholder="username" value= {username}
                 onChange={ evt=> setUsername(evt.target.value)}
@@ -29,7 +40,12 @@ function Auth() {
             <label htmlFor="password">Password</label><br/>
             <input id = "password" type="password" placeholder="password" value={password}
                 onChange={ evt=> setPassword(evt.target.value)}/><br />
-            <button onClick={loginClicked}>Login</button>
+            {isLoginView ? <button onClick={loginClicked}>Login</button> 
+                : <button onClick={registerClicked}>Register</button>}
+            
+            
+            {isLoginView ?  <p onClick={() => setIsLoginView(false)}>Don't have an account? Register here!</p>
+                :<p onClick={() => setIsLoginView(true)}>Already have an account? Login here!</p>}  
         </div>
     )
 }

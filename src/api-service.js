@@ -1,7 +1,18 @@
+// const url = ``
 export class API {
 
+  static registerUser(body) {
+    return fetch(`https://c2b0ca4efb2d.ngrok.io/api/users/`, {
+      method: 'POST',
+      headers: {
+        'Content-Type':'application/json'
+      },
+      body: JSON.stringify(body)
+    }).then(resp => resp.json())
+}
+
     static loginUser(body) {
-        return fetch(`https://471c462111d2.ngrok.io/auth/`, {
+        return fetch(`https://c2b0ca4efb2d.ngrok.io/auth/`, {
           method: 'POST',
           headers: {
             'Content-Type':'application/json'
@@ -11,7 +22,7 @@ export class API {
     }
 
     static updateMovie(movie_id, body, token) {
-    return fetch(`https://471c462111d2.ngrok.io/api/movies/${movie_id}/`, {
+    return fetch(`https://c2b0ca4efb2d.ngrok.io/${movie_id}/`, {
       method: 'PUT',
       headers: {
         'Content-Type':'application/json',
@@ -22,7 +33,7 @@ export class API {
   }
 
   static createMovie(body, token) {
-    return fetch(`https://471c462111d2.ngrok.io/api/movies/`, {
+    return fetch(`https://c2b0ca4efb2d.ngrok.io/api/movies/`, {
       method: 'POST',
       headers: {
         'Content-Type':'application/json',
@@ -33,7 +44,7 @@ export class API {
   }
 
   static deleteMovie(movie_id, token) {
-    return fetch(`https://471c462111d2.ngrok.io/api/movies/${movie_id}`, {
+    return fetch(`https://c2b0ca4efb2d.ngrok.io/api/movies/${movie_id}`, {
       method: 'DELETE',
       headers: {
         'Content-Type':'application/json',

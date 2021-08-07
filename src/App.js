@@ -14,7 +14,7 @@ function App() {
 
 
   useEffect(()=>{
-    fetch("https://471c462111d2.ngrok.io/api/movies/", {
+    fetch(`https://c2b0ca4efb2d.ngrok.io/api/movies/`, {
       method: 'GET',
       headers: {
         'Content-Type':'application/json',
@@ -23,7 +23,7 @@ function App() {
     }).then(resp => resp.json()) //converting response to json
       .then(resp => setMovies(resp))
       .catch(error => console.log(error))
-  }, [])
+  }, [token])
 
   useEffect( () => {
     console.log(token)
