@@ -1,11 +1,12 @@
-import React, {useState, useEffect} from 'react';
-import './App.css';
+import React, {useState, useEffect} from 'react'
+import './App.css'
 import MovieList from './components/movie-list'
 import MovieDetails from './components/movie-details'
 import MovieForm from './components/movie-form'
 import { useCookies } from 'react-cookie';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFilm, faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
+import { useFetch } from './hooks/useFetch'
 
 function App() {
 
@@ -13,19 +14,12 @@ function App() {
   const [selectedMovie, setSelectedMovie] = useState(null);
   const [editMovie, setEditedMovie] = useState(null);
   const [token, setToken, deleteToken] = useCookies(['mr-token'])
+  const [data, loading, error] = useFetch()
 
-
-  useEffect(()=>{
-    fetch(`https://c2b0ca4efb2d.ngrok.io/api/movies/`, {
-      method: 'GET',
-      headers: {
-        'Content-Type':'application/json',
-        'Authorization': `Token ${token['mr-token']}`
-      }
-    }).then(resp => resp.json()) //converting response to json
-      .then(resp => setMovies(resp))
-      .catch(error => console.log(error))
-  }, [token])
+  useEffect ( () => {
+    // console.log("movies",data)
+    setMovies(data)
+  }, [data])
 
   useEffect( () => {
     console.log(token)
@@ -73,6 +67,12 @@ function App() {
     setMovies(newMovies)
   }
 
+  if (loading)
+    return <h1>Loading . . . </h1>
+
+  if (error)
+    return <h1>Error loading movies : {error}</h1>
+  
   return (
     <div className="App">
       <header className="App-header">
@@ -89,7 +89,7 @@ function App() {
           movieClicked={loadMovie} 
           editClicked={editClicked}
           removeClicked = {removeClicked}/>         
-          <button onClick= {newMovie}>New Button</button>
+          <button onClick= {newMovie}>New Movie</button>
         </div>
         <MovieDetails movie={selectedMovie} updateMovie={loadMovie}/>
         {editMovie ? <MovieForm movie={editMovie} updateMovie={updateMovie} movieCreate={movieCreate}/> : null}

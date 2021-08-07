@@ -21,6 +21,16 @@ export class API {
         }).then(resp => resp.json())
     }
 
+    static getMovies(token) {
+      return fetch(`https://c2b0ca4efb2d.ngrok.io/api/movies/`, {
+        method: 'GET',
+        headers: {
+          'Content-Type':'application/json',
+          'Authorization': `Token ${token}`
+      }
+      }).then(resp => resp.json()) //converting response to json  
+    }
+
     static updateMovie(movie_id, body, token) {
     return fetch(`https://c2b0ca4efb2d.ngrok.io/${movie_id}/`, {
       method: 'PUT',

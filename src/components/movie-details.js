@@ -28,7 +28,7 @@ function MovieDetails(props) {
     }
 
     const getDetails = () => {
-        fetch(`https://471c462111d2.ngrok.io/api/movies/${movie.id}/`, {
+        fetch(`https://c2b0ca4efb2d.ngrok.io/api/movies/${movie.id}/`, {
       method: 'GET',
       headers: {
         'Content-Type':'application/json',
