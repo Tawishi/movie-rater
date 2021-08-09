@@ -15,7 +15,7 @@ function MovieDetails(props) {
 
     const rateClicked = rate => evt => {
         // send message to API
-        fetch(`https://c2b0ca4efb2d.ngrok.io/api/movies/${movie.id}/rate_movie/`, {
+        fetch(`https://rest-movie-rater.herokuapp.com/api/movies/${movie.id}/rate_movie/`, {
         method: 'POST',
         headers: {
             'Content-Type':'application/json',
