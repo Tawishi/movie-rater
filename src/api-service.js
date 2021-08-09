@@ -22,7 +22,7 @@ export class API {
     }
 
     static getMovies(token) {
-      return fetch(`https://rest-movie-rater.herokuapp.com/api/movies/`, {
+      return fetch("https://rest-movie-rater.herokuapp.com/api/movies/", {
         method: 'GET',
         headers: {
           'Content-Type':'application/json',
