@@ -54,7 +54,7 @@ export class API {
   }
 
   static deleteMovie(movie_id, token) {
-    return fetch(`${process.env.REACT_APP_API_URL}/api/movies/${movie_id}`, {
+    return fetch(`${process.env.REACT_APP_API_URL}/api/movies/${movie_id}/`, {
       method: 'DELETE',
       headers: {
         'Content-Type':'application/json',
