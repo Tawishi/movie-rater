@@ -2,7 +2,7 @@
 export class API {
 
   static registerUser(body) {
-    return fetch(`https://rest-movie-rater.herokuapp.com/api/users/`, {
+    return fetch(`${process.env.REACT_APP_API_URL}/api/users/`, {
       method: 'POST',
       headers: {
         'Content-Type':'application/json'
@@ -12,7 +12,7 @@ export class API {
 }
 
     static loginUser(body) {
-        return fetch(`https://rest-movie-rater.herokuapp.com/auth/`, {
+        return fetch(`${process.env.REACT_APP_API_URL}/auth/`, {
           method: 'POST',
           headers: {
             'Content-Type':'application/json'
@@ -22,7 +22,7 @@ export class API {
     }
 
     static getMovies(token) {
-      return fetch("https://rest-movie-rater.herokuapp.com/api/movies/", {
+      return fetch(`${process.env.REACT_APP_API_URL}/api/movies/`, {
         method: 'GET',
         headers: {
           'Content-Type':'application/json',
@@ -32,7 +32,7 @@ export class API {
     }
 
     static updateMovie(movie_id, body, token) {
-    return fetch(`https://rest-movie-rater.herokuapp.com/${movie_id}/`, {
+    return fetch(`${process.env.REACT_APP_API_URL}/${movie_id}/`, {
       method: 'PUT',
       headers: {
         'Content-Type':'application/json',
@@ -43,7 +43,7 @@ export class API {
   }
 
   static createMovie(body, token) {
-    return fetch(`https://rest-movie-rater.herokuapp.com/api/movies/`, {
+    return fetch(`${process.env.REACT_APP_API_URL}/api/movies/`, {
       method: 'POST',
       headers: {
         'Content-Type':'application/json',
@@ -54,7 +54,7 @@ export class API {
   }
 
   static deleteMovie(movie_id, token) {
-    return fetch(`https://rest-movie-rater.herokuapp.com/api/movies/${movie_id}`, {
+    return fetch(`${process.env.REACT_APP_API_URL}/api/movies/${movie_id}`, {
       method: 'DELETE',
       headers: {
         'Content-Type':'application/json',

@@ -15,7 +15,7 @@ function MovieDetails(props) {
 
     const rateClicked = rate => evt => {
         // send message to API
-        fetch(`https://rest-movie-rater.herokuapp.com/api/movies/${movie.id}/rate_movie/`, {
+        fetch(`${process.env.REACT_APP_API_URL}/api/movies/${movie.id}/rate_movie/`, {
         method: 'POST',
         headers: {
             'Content-Type':'application/json',
@@ -28,7 +28,7 @@ function MovieDetails(props) {
     }
 
     const getDetails = () => {
-        fetch(`https://rest-movie-rater.herokuapp.com/api/movies/${movie.id}/`, {
+        fetch(`${process.env.REACT_APP_API_URL}/api/movies/${movie.id}/`, {
       method: 'GET',
       headers: {
         'Content-Type':'application/json',
